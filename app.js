@@ -32,7 +32,7 @@ async function setupApp() {
 				mongoUrl: process.env.MONGODB_URI,
 				ttl: 24 * 60 * 60,
 			}),
-			secret: 'Ironhack', // should be inside .env
+			secret: process.env.SECRET_SESSION, // should be inside .env
 			resave: true,
 			saveUninitialized: true,
 			cookie: {
