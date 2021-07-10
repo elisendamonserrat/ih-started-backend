@@ -1,8 +1,10 @@
+const createError = require('http-errors');
+
 const checkIfLoggedIn = (req, res, next) => {
 	if (req.session.currentUser) {
 		next();
 	} else {
-		res.status(401).json({ code: 'unauthorized' });
+		next(createError(401));
 	}
 };
 
@@ -13,7 +15,7 @@ const checkUsernameAndPasswordNotEmpty = (req, res, next) => {
 		res.locals.auth = req.body;
 		next();
 	} else {
-		res.status(422).json({ code: 'validation' });
+		next(createError(422));
 	}
 };
 
